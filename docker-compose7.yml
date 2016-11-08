@@ -1,0 +1,43 @@
+web:
+ build: ./php-apache
+ ports:
+  - "80:80"
+ volumes:
+  - D:\www:/var/www/html
+  - D:\www\docker\sites:/etc/apache2/sites-enabled
+  - D:\www\docker\php-apache\php.ini:/usr/local/etc/php/conf.d/30-custom.ini
+ links:
+  - db:db
+  - mailhog:mailhost
+db:
+ image: mysql
+ volumes:
+  - D:\mysql:/var/lib/mysql
+ environment:
+  - MYSQL_ROOT_PASSWORD=root
+  - TZ=Europe/Paris
+ ports:
+  - "127.0.0.1:3306:3306"
+phpmyadmin:
+ image: phpmyadmin/phpmyadmin
+ container_name: myadmin
+ ports :
+  - "8080:80"
+ environment:
+  - PMA_ARBITRARY=1
+  - PMA_USER=root
+  - PMA_PASSWORD=root
+ links:
+  - db:db
+#mailcatcher:
+# restart: always
+# image: schickling/mailcatcher
+# ports:
+#  - "1080:1080"
+mailhog:
+ image: mailhog/mailhog
+ ports: 
+  - "1080:8025"
+#node:
+# image: node
+# restart: always

@@ -1,0 +1,30 @@
+web:
+ restart: always
+ build: /mnt/hgfs/www/docker/php-apache
+ ports:
+  - "80:80"
+ volumes:
+  - /mnt/hgfs/www:/var/www/html
+  - /mnt/hgfs/www/docker/sites:/etc/apache2/sites-enabled
+  - /mnt/hgfs/www/docker/php-apache/php.ini:/usr/local/etc/php/conf.d/30-custom.ini
+ links:
+  - db:db
+  - mailhog:mailhost
+db:
+ image: mysql
+ restart: always
+ volumes:
+  - /var/lib/boot2docker/mysql:/var/lib/mysql
+ environment:
+  - MYSQL_ROOT_PASSWORD=root
+  - TZ=Europe/Paris
+#mailcatcher:
+# restart: always
+# image: schickling/mailcatcher
+# ports:
+#  - "1080:1080"
+mailhog:
+ restart: always
+ image: mailhog/mailhog
+ ports: 
+  - "1080:8025"

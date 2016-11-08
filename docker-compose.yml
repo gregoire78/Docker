@@ -1,0 +1,6 @@
+node:
+ build: ./node
+ ports:
+  - "3000:3000"
+ volumes:
+  - D:\www\local.dev\MCQuizz:/usr/src/app/
