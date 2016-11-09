@@ -4,8 +4,8 @@ web:
   - "80:80"
  volumes:
   - D:\www:/var/www/html
-  - D:\www\docker\sites:/etc/apache2/sites-enabled
-  - D:\www\docker\php-apache\php.ini:/usr/local/etc/php/conf.d/30-custom.ini
+  - D:\www\docker\php7\sites:/etc/apache2/sites-enabled
+  - D:\www\docker\php7\php-apache\php.ini:/usr/local/etc/php/conf.d/30-custom.ini
  links:
   - db:db
   - mailhog:mailhost
