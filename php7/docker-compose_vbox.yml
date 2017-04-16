@@ -1,0 +1,40 @@
+web:
+ image: greg78/php7_web
+ ports:
+  - "80:80"
+ volumes:
+  - /var/www:/var/www/html
+  - /var/www/docker/php7/sites:/etc/apache2/sites-enabled
+  - /var/www/docker/php7/php-apache/php-stack.ini:/usr/local/etc/php/conf.d/30-custom.ini
+ links:
+  - db:db
+  - mailhog:mailhost
+  - memcached:memcached
+memcached:
+ image: memcached
+ ports:
+  - "127.0.0.1:11211:11211"
+db:
+ image: mysql
+ volumes:
+  - /var/www/mysql:/var/lib/mysql
+ environment:
+  - MYSQL_ROOT_PASSWORD=root
+  - TZ=Europe/Paris
+ ports:
+  - "127.0.0.1:3306:3306"
+phpmyadmin:
+ image: phpmyadmin/phpmyadmin
+ container_name: myadmin
+ ports :
+  - "8080:80"
+ environment:
+  - PMA_ARBITRARY=1
+  - PMA_USER=root
+  - PMA_PASSWORD=root
+ links:
+  - db:db
+mailhog:
+ image: mailhog/mailhog
+ ports: 
+  - "1080:8025"
