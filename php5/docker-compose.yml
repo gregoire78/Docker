@@ -1,18 +1,16 @@
 web:
- restart: always
  build: ./php-apache
  ports:
   - "80:80"
  volumes:
   - /var/www:/var/www/html
-  - /var/www/docker/sites:/etc/apache2/sites-enabled
-  - /var/www/docker/php-apache/php.ini:/usr/local/etc/php/conf.d/30-custom.ini
+  - /var/www/docker/php5/sites:/etc/apache2/sites-enabled
+  - /var/www/docker/php5/php-apache/php.ini:/usr/local/etc/php/conf.d/30-custom.ini
  links:
   - db:db
   - mailhog:mailhost
 db:
  image: mysql
- restart: always
  volumes:
   - /var/lib/boot2docker/mysql:/var/lib/mysql
  environment:
@@ -26,7 +24,6 @@ db:
 # ports:
 #  - "1080:1080"
 mailhog:
- restart: always
  image: mailhog/mailhog
  ports: 
   - "1080:8025"

@@ -1,0 +1,13 @@
+#boot2docker file root - /var/lib/boot2docker/bootlocal.sh
+mkdir /var/www
+sudo mount -t vboxsf www /var/www
+
+echo 'alias composer='\''docker run -ti --rm -v $(pwd):/app composer/composer'\''' >> /home/docker/.ashrc
+
+
+
+
+
+
+
+chown -R www-data:www-data /var/www/html/sessions/

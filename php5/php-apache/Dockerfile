@@ -73,7 +73,7 @@ RUN docker-php-ext-install mbstring
 RUN buildRequirements="libyaml-dev" \
 	&& apt-get update && apt-get install -y ${buildRequirements} \
 	&& pecl install yaml \
-	&& echo "extension=yaml.so" > /usr/local/etc/php/conf.d/ext-yaml.ini \
+#	&& echo "extension=yaml.so" > /usr/local/etc/php/conf.d/ext-yaml.ini \
 	&& apt-get purge -y ${buildRequirements} \
 	&& rm -rf /var/lib/apt/lists/*
 
