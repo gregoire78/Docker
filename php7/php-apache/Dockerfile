@@ -11,6 +11,7 @@ RUN apt-get update \
 RUN pecl install xdebug
 RUN echo 'zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20151012/xdebug.so' >> /usr/local/etc/php/php.ini
 
+
 # Install utilities used by TYPO3 CMS / Flow / Neos
 RUN apt-get update \
 	&& apt-get install -y \
@@ -24,8 +25,18 @@ RUN apt-get update \
 		mysql-client \
 		moreutils \
 		dnsutils \
+		libssl-dev \
+		pkg-config \
+		openssl \
+		libcurl4-openssl-dev \
 	&& rm -rf /var/lib/apt/lists/*
-	
+
+# mongodb
+#RUN pecl install mongodb \
+#	&& echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/ext-mongodb.ini
+#RUN pecl install mongo \
+#	&& echo "extension=mongo.so" >> /usr/local/etc/php/conf.d/ext-mongo.ini
+
 # gd
 RUN buildRequirements="libpng12-dev libjpeg-dev libfreetype6-dev" \
 	&& apt-get update && apt-get install -y ${buildRequirements} \

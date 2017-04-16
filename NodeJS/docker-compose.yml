@@ -4,3 +4,14 @@ node:
   - "3000:3000"
  volumes:
   - D:\www\local.dev\MCQuizz:/usr/src/app/
+ links:
+  - db:db
+db:
+ image: mysql
+ volumes:
+  - D:\mysql:/var/lib/mysql
+ environment:
+  - MYSQL_ROOT_PASSWORD=root
+  - TZ=Europe/Paris
+ ports:
+  - "127.0.0.1:3306:3306"
