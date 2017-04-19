@@ -1,0 +1,41 @@
+version: '3'
+services:
+ web:
+  image: nginx:latest
+  ports:
+   - "80:80"
+  volumes:
+   - /var/www/infra/code:/code
+   - /var/www/docker/php7fpm/sites:/etc/nginx/conf.d
+  depends_on:
+   - php
+ php:
+  image: greg78/php7_fpm
+  volumes:
+   - /var/www/infra/code:/code
+   - /var/www/docker/php7fpm/php-fpm/php-stack.ini:/usr/local/etc/php/conf.d/30-custom.ini
+  depends_on:
+   - db
+  deploy:
+   mode: global
+ db:
+  image: mysql
+  ports:
+   - "127.0.0.1:3306:3306"
+  volumes:
+   - /var/www/mysql_infra:/var/lib/mysql
+  environment:
+   - MYSQL_ROOT_PASSWORD=root
+   - TZ=Europe/Paris
+ mailhog:
+  image: mailhog/mailhog
+  ports: 
+   - "1080:8025"
+ memcached:
+  image: memcached
+  ports:
+   - "127.0.0.1:11211:11211"
+  deploy:
+   placement:
+    constraints:
+     - node.role == manager

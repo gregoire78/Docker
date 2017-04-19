@@ -1,5 +1,5 @@
 web:
- build: ./php-apache
+ image: greg78/php5_web
  ports:
   - "80:80"
  volumes:
@@ -8,7 +8,7 @@ web:
   - /var/www/docker/php5/php-apache/php.ini:/usr/local/etc/php/conf.d/30-custom.ini
  links:
   - db:db
-  - mailhog:mailhost
+  - mailhog:mailhog
 db:
  image: mysql
  volumes:
