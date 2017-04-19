@@ -1,5 +1,5 @@
 web:
- image: nginx:latest
+ image: armhfbuild/nginx:latest
  ports:
   - "80:80"
  volumes:
