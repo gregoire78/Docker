@@ -10,7 +10,7 @@ services:
    - /var/www/docker/php7/php-apache/php-stack.ini:/usr/local/etc/php/conf.d/30-custom.ini
   links:
    - db:db
-   - mailhog:mailhost
+   - mailhog:mailhog
    - memcached:memcached
   depends_on:
    - db
