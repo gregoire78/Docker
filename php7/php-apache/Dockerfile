@@ -109,3 +109,14 @@ RUN apt-get -y install libz-dev libmemcached-dev libmemcached11 libmemcachedutil
 #  && chown -R www-data:staff /var/www/html/session \
 #  && chmod -R 777 /var/www/html/session
 #VOLUME /var/www/html/session
+
+# wkhtmltopdf
+RUN apt-get update && \
+    apt-get install -y \
+        xfonts-utils \
+        xfonts-base \
+        xfonts-75dpi \
+        && \
+    wget http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb && \
+    dpkg -i wkhtmltox-0.12.2.1_linux-jessie-amd64.deb && \
+    rm wkhtmltox-0.12.2.1_linux-jessie-amd64.deb

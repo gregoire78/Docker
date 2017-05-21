@@ -1,5 +1,5 @@
 web:
- image: greg78/php7_web
+ image: greg78/php7_apache
  ports:
   - "80:80"
  volumes:
