@@ -38,3 +38,12 @@ mailhog:
  image: mailhog/mailhog
  ports: 
   - "1080:8025"
+#minecraft:
+# image: greg78/minecraft-spigot
+# command: java -Xms512M -Xmx3G -jar /webserver/minecraft_server.jar nogui
+# volumes:
+#  - D:\www\docker\minecraft_spigot\minecraft:/data
+# ports:
+#  - "127.0.0.1:25565:25565"
+# links:
+#  - db:db
