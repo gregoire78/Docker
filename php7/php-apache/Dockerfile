@@ -87,8 +87,8 @@ ENV LC_ALL fr_FR.UTF-8
 
 # wkhtmltopdf
 RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
-	&& tar xf  wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
-	&& cp -R ./wkhtmltox/bin/* /usr/ \
+	&& tar -xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
+	&& mv -v wkhtmltox/bin/* /usr/bin/ \
 	&& rm wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
 
 # Clean up APT when done.
